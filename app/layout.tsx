@@ -22,7 +22,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "108 Services - خدمات 108",
   description:
-    "Your One-Stop Solution for Home & Tech Services in Riyadh - حلولك الشاملة للخدمات المنزلية والتقنية في الرياض",
+    "Your One-Stop Solution for Home & Tech Services - حلولك الشاملة للخدمات المنزلية والتقنية في الرياض",
   keywords:
     "services, maintenance, construction, IT, Riyadh, Saudi Arabia, خدمات, صيانة, إنشاءات, تقنية المعلومات, الرياض",
   authors: [{ name: "108 Services" }],
@@ -33,8 +33,7 @@ export const metadata: Metadata = {
     siteName: "108 Services",
     locale: "ar_SA",
     type: "website",
-  },
-    generator: 'v0.dev'
+  }
 }
 
 export default function RootLayout({

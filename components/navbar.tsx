@@ -6,6 +6,17 @@ import { Button } from "@/components/ui/button"
 import { Menu, X, Globe } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
 
+// --- Professional Color Palette ---
+// Centralizing the color palette for brand consistency and easy maintenance.
+const colors = {
+  background: "#FCF7F8", // Off-white (Snow)
+  primary: "#A31621", // Deep Red (Madder)
+  textPrimary: "#1f2937", // A strong, dark gray for main text
+  textSecondary: "#4b5563", // A softer gray for subtitles
+  borderColor: "#0000001a", // Subtle black border with transparency
+};
+
+
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { language, setLanguage, t } = useLanguage()
@@ -23,19 +34,19 @@ export function Navbar() {
   ]
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+    <nav className="shadow-sm sticky top-0 z-50" style={{backgroundColor: colors.background, borderBottom: `1px solid ${colors.borderColor}`}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse group">
-            <div className="w-12 h-12 bg-black rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow">
+            <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow" style={{backgroundColor: colors.primary}}>
               <span className="text-white font-bold text-xl">108</span>
             </div>
             <div className="flex flex-col">
-              <span className={`font-bold text-xl text-black ${language === "ar" ? "font-arabic" : "font-english"}`}>
+              <span className={`font-bold text-xl ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.primary}}>
                 {language === "ar" ? "خدمات 108" : "108 Services"}
               </span>
-              <span className={`text-xs text-gray-500 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+              <span className={`text-xs ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
                 {language === "ar" ? "حلول شاملة" : "Complete Solutions"}
               </span>
             </div>
@@ -47,12 +58,15 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-gray-700 hover:text-black font-medium transition-colors relative group ${
+                className={`font-medium transition-colors relative group ${
                   language === "ar" ? "font-arabic" : "font-english"
                 }`}
+                style={{color: colors.textPrimary}}
+                onMouseOver={(e) => e.currentTarget.style.color = colors.primary}
+                onMouseOut={(e) => e.currentTarget.style.color = colors.textPrimary}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-black transition-all group-hover:w-full"></span>
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full" style={{backgroundColor: colors.primary}}></span>
               </Link>
             ))}
 
@@ -61,7 +75,10 @@ export function Navbar() {
               variant="outline"
               size="sm"
               onClick={toggleLanguage}
-              className="flex items-center space-x-2 rtl:space-x-reverse btn-secondary bg-transparent"
+              className="flex items-center space-x-2 rtl:space-x-reverse bg-transparent border hover:bg-transparent"
+              style={{color: colors.primary, borderColor: colors.primary}}
+              onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = 'white'}}
+              onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
             >
               <Globe className="w-4 h-4" />
               <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("nav.language")}</span>
@@ -70,7 +87,7 @@ export function Navbar() {
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="p-2">
+            <Button variant="ghost" size="sm" onClick={() => setIsOpen(!isOpen)} className="p-2" style={{color: colors.primary}}>
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
@@ -78,29 +95,37 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden border-t border-gray-200">
-            <div className="px-2 pt-4 pb-6 space-y-2 bg-white">
+          <div className="md:hidden" style={{borderTop: `1px solid ${colors.borderColor}`}}>
+            <div className="px-2 pt-4 pb-6 space-y-2" style={{backgroundColor: colors.background}}>
               {navItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block px-4 py-3 text-gray-700 hover:text-black hover:bg-gray-50 rounded-lg font-medium transition-colors ${
+                  className={`block px-4 py-3 rounded-lg font-medium transition-colors ${
                     language === "ar" ? "font-arabic" : "font-english"
                   }`}
+                  style={{color: colors.textPrimary}}
+                  onMouseOver={(e) => {e.currentTarget.style.backgroundColor = `${colors.primary}10`; e.currentTarget.style.color = colors.primary}}
+                  onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.textPrimary}}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}
                 </Link>
               ))}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={toggleLanguage}
-                className="mx-4 mt-4 flex items-center space-x-2 rtl:space-x-reverse btn-secondary bg-transparent"
-              >
-                <Globe className="w-4 h-4" />
-                <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("nav.language")}</span>
-              </Button>
+              <div className="px-2 pt-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={toggleLanguage}
+                  className="w-full flex items-center justify-center space-x-2 rtl:space-x-reverse bg-transparent border hover:bg-transparent"
+                  style={{color: colors.primary, borderColor: colors.primary}}
+                  onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = 'white'}}
+                  onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
+                >
+                  <Globe className="w-4 h-4" />
+                  <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("nav.language")}</span>
+                </Button>
+              </div>
             </div>
           </div>
         )}
