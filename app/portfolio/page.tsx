@@ -119,6 +119,17 @@ const categories = [
   { key: "electrical", ar: "كهرباء", en: "Electrical" },
 ]
 
+// --- Professional Color Palette ---
+const colors = {
+  background: "#FCF7F8", // Off-white (Snow)
+  primary: "#A31621", // Deep Red (Madder)
+  primaryHover: "#8A121B", // Darker red for hover
+  accent: "#FFD700", // Gold accent
+  textPrimary: "#1f2937", // A strong, dark gray for main text
+  textSecondary: "#4b5563", // A softer gray for subtitles
+  white: "#FFFFFF",
+};
+
 export default function PortfolioPage() {
   const { language, t } = useLanguage()
   const [selectedCategory, setSelectedCategory] = useState("all")
@@ -138,12 +149,10 @@ export default function PortfolioPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-[#004AAD] to-[#00C2A8] text-white py-16">
+      <section className="section-padding border-b" style={{backgroundColor: colors.primary}}>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`}>
-            {t("nav.portfolio")}
-          </h1>
-          <p className={`text-xl text-blue-100 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("nav.portfolio")}</h1>
+          <p className={`text-xl mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'rgba(252,247,248,0.85)'}}>
             {language === "ar"
               ? "استعرض مجموعة من أعمالنا المنجزة بنجاح"
               : "Browse through our successfully completed projects"}
@@ -170,9 +179,10 @@ export default function PortfolioPage() {
                 variant={selectedCategory === category.key ? "default" : "outline"}
                 size="sm"
                 onClick={() => handleCategoryFilter(category.key)}
-                className={`${selectedCategory === category.key ? "bg-[#004AAD] hover:bg-[#003a8c]" : ""} ${
-                  language === "ar" ? "font-arabic" : "font-english"
-                }`}
+                className={`ripple rounded-lg text-base font-semibold ${language === "ar" ? "font-arabic" : "font-english"}`}
+                style={selectedCategory === category.key ? {backgroundColor: colors.primary, color: colors.white, borderColor: colors.primary} : {backgroundColor: 'transparent', color: colors.primary, borderColor: colors.primary}}
+                onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primaryHover; e.currentTarget.style.color = colors.white}}
+                onMouseOut={(e) => {e.currentTarget.style.backgroundColor = selectedCategory === category.key ? colors.primary : 'transparent'; e.currentTarget.style.color = colors.primary}}
               >
                 {category[language]}
               </Button>
@@ -182,23 +192,23 @@ export default function PortfolioPage() {
       </section>
 
       {/* Portfolio Grid */}
-      <section className="py-20">
+      <section className="py-20 fade-in">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredItems.map((item) => (
-              <Card key={item.id} className="service-card overflow-hidden">
+            {filteredItems.map((item, idx) => (
+              <Card key={item.id} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`, backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
                 <div className="relative">
                   <img
                     src={item.image || "/placeholder.svg"}
                     alt={item.title[language]}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover rounded-t-xl"
                   />
                   <div className="absolute top-4 right-4">
-                    <Badge className="bg-[#004AAD] text-white">{t(`services.${item.category}`)}</Badge>
+                    <Badge style={{backgroundColor: colors.primary, color: colors.white, borderColor: colors.primary}}>{t(`services.${item.category}`)}</Badge>
                   </div>
                   {item.beforeAfter && (
                     <div className="absolute top-4 left-4">
-                      <Badge variant="secondary" className="bg-green-100 text-green-800">
+                      <Badge variant="secondary" style={{backgroundColor: colors.accent, color: colors.primary, borderColor: colors.accent}}>
                         {language === "ar" ? "قبل وبعد" : "Before/After"}
                       </Badge>
                     </div>
@@ -207,16 +217,24 @@ export default function PortfolioPage() {
 
                 <CardContent className="p-6">
                   <h3
-                    className={`font-bold text-lg mb-2 text-gray-900 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                    className={`font-bold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                    style={{color: colors.textPrimary}}
                   >
                     {item.title[language]}
                   </h3>
-                  <p className={`text-gray-600 mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+                  <p className={`mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
                     {item.description[language]}
                   </p>
 
                   <div className="flex space-x-2 rtl:space-x-reverse">
-                    <Button size="sm" variant="outline" className="flex-1 bg-transparent">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="flex-1 ripple rounded-lg text-base font-semibold"
+                      style={{borderColor: colors.primary, color: colors.primary, backgroundColor: 'transparent'}}
+                      onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}}
+                      onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
+                    >
                       <Eye className="w-4 h-4 mr-1" />
                       <span className={language === "ar" ? "font-arabic" : "font-english"}>
                         {language === "ar" ? "عرض" : "View"}
@@ -224,7 +242,14 @@ export default function PortfolioPage() {
                     </Button>
 
                     {item.downloadable && (
-                      <Button size="sm" variant="outline">
+                      <Button 
+                        size="sm" 
+                        variant="outline" 
+                        className="flex-1 ripple rounded-lg text-base font-semibold"
+                        style={{borderColor: colors.accent, color: colors.primary, backgroundColor: 'transparent'}}
+                        onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = colors.primary}}
+                        onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
+                      >
                         <Download className="w-4 h-4 mr-1" />
                         <span className={language === "ar" ? "font-arabic" : "font-english"}>
                           {language === "ar" ? "تحميل" : "Download"}

@@ -53,7 +53,6 @@ const services = [
 ]
 
 const features = [
-  { icon: CheckCircle, text: { ar: "خدمة 24/7", en: "24/7 Service" } },
   { icon: Star, text: { ar: "جودة مضمونة", en: "Quality Guaranteed" } },
   { icon: Phone, text: { ar: "استجابة سريعة", en: "Quick Response" } },
 ]
@@ -77,7 +76,10 @@ export default function HomePage() {
                   }`}
                   style={{ color: colors.primary }}
                 >
-                  {t("home.hero.title")}
+                  {/* Remove 'in Riyadh' from the English translation */}
+                  {language === "ar"
+                    ? t("home.hero.title")
+                    : "Your One-Stop Solution for Home & Tech Services"}
                 </h1>
                 <p
                   className={`text-xl leading-relaxed max-w-lg ${language === "ar" ? "font-arabic" : "font-english"}`}
@@ -123,27 +125,14 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-            <div className="slide-up">
-              <div className="relative">
-                <div className="bg-white rounded-2xl h-96 flex items-center justify-center border" style={{borderColor: `${colors.primary}20`}}>
-                  <div className="text-center space-y-4">
-                    <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto" style={{backgroundColor: colors.primary}}>
-                      <span className="text-white font-bold text-2xl">108</span>
-                    </div>
-                    <p className={`text-gray-600 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
-                      {language === "ar" ? "صورة الخدمات" : "Services Image"}
-                    </p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-4 -right-4 bg-white rounded-xl p-4 shadow-lg border" style={{borderColor: `${colors.primary}20`}}>
-                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                    <div className="w-3 h-3 rounded-full animate-pulse" style={{backgroundColor: colors.primary}}></div>
-                    <span className="text-sm font-medium" style={{color: colors.textPrimary}}>
-                      {language === "ar" ? "متاح الآن" : "Available Now"}
-                    </span>
-                  </div>
-                </div>
-              </div>
+            {/* Add a hero image for visual appeal */}
+            <div className="slide-up flex items-center justify-center">
+              <img
+                src="/placeholder.jpg"
+                alt="Service Hero"
+                className="rounded-2xl shadow-lg object-cover h-96 w-full max-w-lg border border-[color:var(--primary)]"
+                style={{ background: '#eee' }}
+              />
             </div>
           </div>
         </div>
@@ -170,7 +159,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {services.map((service) => {
+            {services.map((service, idx) => {
               const Icon = service.icon
               return (
                 <Card
@@ -179,7 +168,14 @@ export default function HomePage() {
                   style={{ backgroundColor: colors.background, borderColor: `${colors.primary}20` }}
                 >
                   <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-red-50 transition-colors border" style={{borderColor: `${colors.primary}20`}}>
+                    {/* Add a service image above the icon */}
+                    <img
+                      src={`/servcies.jpg`}
+                      alt={t(`services.${service.key}`)}
+                      className="w-16 h-16 mx-auto mb-4 rounded-xl object-cover border border-[color:var(--primary)] group-hover:scale-110 transition-transform"
+                      style={{ background: '#fafafa' }}
+                    />
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-red-50 transition-colors border" style={{borderColor: `${colors.primary}20`, marginTop: '-2.5rem'}}>
                       <Icon className="w-8 h-8" style={{color: colors.primary}} />
                     </div>
                     <h3
@@ -213,12 +209,12 @@ export default function HomePage() {
       {/* Stats Section */}
       <section className="section-padding border-t" style={{backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
         <div className="container-max">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            {/* Remove 24/7 stat and rebalance grid to 3 columns */}
             {[
               { icon: Users, number: "500+", label: { ar: "مشروع مكتمل", en: "Projects Completed" } },
               { icon: Star, number: "50+", label: { ar: "عميل راضي", en: "Happy Clients" } },
               { icon: Clock, number: "5+", label: { ar: "سنوات خبرة", en: "Years Experience" } },
-              { icon: Award, number: "24/7", label: { ar: "دعم متواصل", en: "Support Available" } },
             ].map((stat, index) => {
               const Icon = stat.icon
               return (

@@ -13,6 +13,17 @@ import { useLanguage } from "@/contexts/language-context"
 import { useToast } from "@/hooks/use-toast"
 import { MapPin, Phone, Mail, Clock, MessageCircle, Loader2 } from "lucide-react"
 
+// --- Professional Color Palette ---
+const colors = {
+  background: "#FCF7F8", // Off-white (Snow)
+  primary: "#A31621", // Deep Red (Madder)
+  primaryHover: "#8A121B", // Darker red for hover
+  accent: "#FFD700", // Gold accent
+  textPrimary: "#1f2937", // A strong, dark gray for main text
+  textSecondary: "#4b5563", // A softer gray for subtitles
+  white: "#FFFFFF",
+};
+
 export default function ContactPage() {
   const { language, t } = useLanguage()
   const { toast } = useToast()
@@ -72,14 +83,10 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-gray-50 section-padding border-b border-gray-200">
+      <section className="section-padding border-b" style={{backgroundColor: colors.primary}}>
         <div className="max-w-4xl mx-auto text-center">
-          <h1
-            className={`text-4xl md:text-5xl font-bold mb-4 text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
-          >
-            {t("nav.contact")}
-          </h1>
-          <p className={`text-xl text-gray-600 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("nav.contact")}</h1>
+          <p className={`text-xl mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'rgba(252,247,248,0.85)'}}>
             {language === "ar"
               ? "نحن هنا لمساعدتك، تواصل معنا في أي وقت"
               : "We are here to help you, contact us anytime"}
@@ -87,13 +94,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding fade-in">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
-            <div>
+            <div className="fade-in">
               <h2
-                className={`text-3xl font-bold text-black mb-8 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                className={`text-3xl font-bold mb-8 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                style={{color: colors.primary}}
               >
                 {language === "ar" ? "معلومات التواصل" : "Contact Information"}
               </h2>
@@ -101,12 +109,13 @@ export default function ContactPage() {
               <div className="space-y-6">
                 {/* Address */}
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{backgroundColor: colors.primary}}>
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3
-                      className={`font-semibold text-lg text-black mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      className={`font-semibold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{color: colors.primary}}
                     >
                       {t("footer.address")}
                     </h3>
@@ -138,12 +147,13 @@ export default function ContactPage() {
 
                 {/* Phone */}
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{backgroundColor: colors.primaryHover}}>
                     <Phone className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3
-                      className={`font-semibold text-lg text-black mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      className={`font-semibold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{color: colors.primary}}
                     >
                       {language === "ar" ? "الهاتف" : "Phone"}
                     </h3>
@@ -154,12 +164,13 @@ export default function ContactPage() {
 
                 {/* Email */}
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 bg-gray-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{backgroundColor: colors.primaryHover}}>
                     <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3
-                      className={`font-semibold text-lg text-black mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      className={`font-semibold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{color: colors.primary}}
                     >
                       {language === "ar" ? "البريد الإلكتروني" : "Email"}
                     </h3>
@@ -170,12 +181,13 @@ export default function ContactPage() {
 
                 {/* Working Hours */}
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{backgroundColor: colors.primaryHover}}>
                     <Clock className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3
-                      className={`font-semibold text-lg text-black mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      className={`font-semibold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{color: colors.primary}}
                     >
                       {language === "ar" ? "ساعات العمل" : "Working Hours"}
                     </h3>
@@ -190,12 +202,13 @@ export default function ContactPage() {
 
                 {/* WhatsApp */}
                 <div className="flex items-start space-x-4 rtl:space-x-reverse">
-                  <div className="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0" style={{backgroundColor: colors.primaryHover}}>
                     <MessageCircle className="w-6 h-6 text-white" />
                   </div>
                   <div>
                     <h3
-                      className={`font-semibold text-lg text-black mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      className={`font-semibold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{color: colors.primary}}
                     >
                       {language === "ar" ? "واتساب" : "WhatsApp"}
                     </h3>
@@ -213,10 +226,10 @@ export default function ContactPage() {
             </div>
 
             {/* Contact Form */}
-            <div>
-              <Card className="card-white">
+            <div className="fade-in">
+              <Card className="card-white shadow-lg fade-in" style={{backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
                 <CardHeader>
-                  <CardTitle className={`text-2xl text-black ${language === "ar" ? "font-arabic" : "font-english"}`}>
+                  <CardTitle className={`text-2xl ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.primary}}>
                     {language === "ar" ? "أرسل لنا رسالة" : "Send us a Message"}
                   </CardTitle>
                 </CardHeader>
@@ -274,13 +287,11 @@ export default function ContactPage() {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full btn-primary" disabled={isSubmitting}>
+                    <Button type="submit" className="w-full btn-primary ripple text-lg py-4 rounded-lg font-semibold" style={{backgroundColor: 'var(--primary)', color: 'white', borderColor: 'var(--primary)'}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary-hover)'; e.currentTarget.style.color = 'white'}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary)'; e.currentTarget.style.color = 'white'}} disabled={isSubmitting}>
                       {isSubmitting ? (
                         <>
                           <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                          <span className={language === "ar" ? "font-arabic" : "font-english"}>
-                            {t("common.loading")}
-                          </span>
+                          <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("common.loading")}</span>
                         </>
                       ) : (
                         <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("common.submit")}</span>

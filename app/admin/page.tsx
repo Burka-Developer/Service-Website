@@ -34,6 +34,17 @@ interface Contact {
   created_at: string
 }
 
+// --- Professional Color Palette ---
+const colors = {
+  background: "#FCF7F8", // Off-white (Snow)
+  primary: "#A31621", // Deep Red (Madder)
+  primaryHover: "#8A121B", // Darker red for hover
+  accent: "#FFD700", // Gold accent
+  textPrimary: "#1f2937", // A strong, dark gray for main text
+  textSecondary: "#4b5563", // A softer gray for subtitles
+  white: "#FFFFFF",
+};
+
 export default function AdminPage() {
   const { toast } = useToast()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -140,9 +151,9 @@ export default function AdminPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "pending":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200"
+        return "bg-[color:var(--accent)] text-[color:var(--primary)] border-[color:var(--accent)]"
       case "confirmed":
-        return "bg-blue-100 text-blue-800 border-blue-200"
+        return "bg-[color:var(--primary)] text-white border-[color:var(--primary)]"
       case "completed":
         return "bg-green-100 text-green-800 border-green-200"
       case "cancelled":
@@ -201,13 +212,13 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen" style={{backgroundColor: colors.background}}>
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-200">
+      <div className="shadow-sm border-b" style={{backgroundColor: colors.white, borderColor: colors.primary}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-2xl font-bold text-black">108 Services Admin</h1>
-            <Button variant="outline" onClick={() => setIsAuthenticated(false)} className="btn-secondary">
+            <h1 className="text-2xl font-bold" style={{color: colors.primary}}>108 Services Admin</h1>
+            <Button variant="outline" onClick={() => setIsAuthenticated(false)} className="btn-secondary ripple" style={{borderColor: colors.primary, color: colors.primary}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = colors.white; e.currentTarget.style.color = colors.primary}}>
               Logout
             </Button>
           </div>
@@ -295,22 +306,22 @@ export default function AdminPage() {
                 ) : (
                   <div className="space-y-4">
                     {bookings.map((booking) => (
-                      <div key={booking.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                      <div key={booking.id} className="card-white fade-in border border-[color:var(--primary)] bg-white group hover:shadow-lg transition-shadow duration-300">
                         <div className="flex justify-between items-start mb-3">
                           <div>
                             <h3 className="font-semibold text-lg text-black">{booking.name}</h3>
                             <div className="flex items-center space-x-4 text-sm text-gray-600 mt-1">
                               <span className="flex items-center">
-                                <Mail className="w-4 h-4 mr-1" />
+                                <Mail className="w-4 h-4 mr-1" style={{color: 'var(--primary)'}} />
                                 {booking.email}
                               </span>
                               <span className="flex items-center">
-                                <Phone className="w-4 h-4 mr-1" />
+                                <Phone className="w-4 h-4 mr-1" style={{color: 'var(--primary)'}} />
                                 {booking.phone}
                               </span>
                             </div>
                           </div>
-                          <Badge className={getStatusColor(booking.status)}>{booking.status}</Badge>
+                          <Badge className={getStatusColor(booking.status)} style={{borderColor: 'var(--primary)'}}>{booking.status}</Badge>
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
@@ -344,7 +355,10 @@ export default function AdminPage() {
                             <Button
                               size="sm"
                               onClick={() => updateBookingStatus(booking.id, "confirmed")}
-                              className="bg-blue-600 hover:bg-blue-700 text-white"
+                              className="btn-primary ripple rounded-lg text-base font-semibold"
+                              style={{backgroundColor: colors.primary, color: colors.white, borderColor: colors.primary}}
+                              onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primaryHover; e.currentTarget.style.color = colors.white}}
+                              onMouseOut={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}}
                             >
                               Confirm
                             </Button>
@@ -353,7 +367,10 @@ export default function AdminPage() {
                             <Button
                               size="sm"
                               onClick={() => updateBookingStatus(booking.id, "completed")}
-                              className="bg-green-600 hover:bg-green-700 text-white"
+                              className="btn-primary ripple rounded-lg text-base font-semibold"
+                              style={{backgroundColor: colors.accent, color: colors.primary, borderColor: colors.accent}}
+                              onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}}
+                              onMouseOut={(e) => {e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = colors.primary}}
                             >
                               Mark Complete
                             </Button>
@@ -362,7 +379,10 @@ export default function AdminPage() {
                             size="sm"
                             variant="outline"
                             onClick={() => deleteBooking(booking.id)}
-                            className="btn-secondary"
+                            className="ripple rounded-lg text-base font-semibold"
+                            style={{backgroundColor: '#fff0f0', color: '#A31621', borderColor: '#A31621'}}
+                            onMouseOver={(e) => {e.currentTarget.style.backgroundColor = '#A31621'; e.currentTarget.style.color = '#fff'}}
+                            onMouseOut={(e) => {e.currentTarget.style.backgroundColor = '#fff0f0'; e.currentTarget.style.color = '#A31621'}}
                           >
                             <Trash2 className="w-4 h-4 mr-1" />
                             Delete
@@ -395,7 +415,7 @@ export default function AdminPage() {
                 ) : (
                   <div className="space-y-4">
                     {contacts.map((inquiry) => (
-                      <div key={inquiry.id} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                      <div key={inquiry.id} className="card-white fade-in border border-gray-200 rounded-lg p-4 bg-gray-50">
                         <div className="flex justify-between items-start mb-3">
                           <div>
                             <h3 className="font-semibold text-black">{inquiry.name}</h3>

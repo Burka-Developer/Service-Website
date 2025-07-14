@@ -172,16 +172,14 @@ export default function ServicesPage() {
   const { language, t } = useLanguage()
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[color:var(--background)]">
       <Navbar />
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-[#004AAD] to-[#00C2A8] text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className={`text-4xl md:text-5xl font-bold mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`}>
-            {t("nav.services")}
-          </h1>
-          <p className={`text-xl text-blue-100 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+      <section className="section-padding border-b" style={{backgroundColor: 'var(--primary)'}}>
+        <div className="container-max text-center">
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("nav.services")}</h1>
+          <p className={`text-xl mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'rgba(252,247,248,0.85)'}}>
             {language === "ar"
               ? "نقدم مجموعة شاملة من الخدمات المهنية عالية الجودة"
               : "We provide a comprehensive range of high-quality professional services"}
@@ -190,43 +188,35 @@ export default function ServicesPage() {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="section-padding fade-in">
+        <div className="container-max">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {servicesData.map((service) => {
+            {servicesData.map((service, idx) => {
               const Icon = service.icon
               return (
-                <Card key={service.key} className="service-card hover:scale-105 transition-transform">
+                <Card key={service.key} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`}}>
                   <CardHeader>
-                    <div className={`w-16 h-16 ${service.bgColor} rounded-lg flex items-center justify-center mb-4`}>
-                      <Icon className={`w-8 h-8 ${service.color}`} />
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 border group-hover:bg-[color:var(--primary)] group-hover:shadow-lg transition-colors" style={{borderColor: 'var(--primary)'}}>
+                      <Icon className="w-8 h-8" style={{color: 'var(--primary)'}} />
                     </div>
-                    <CardTitle className={`text-xl ${language === "ar" ? "font-arabic" : "font-english"}`}>
+                    <CardTitle className={`text-xl ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'var(--primary)'}}>
                       {t(`services.${service.key}`)}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className={`text-gray-600 mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+                    <p className={`mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'var(--foreground)'}}>
                       {service.description[language]}
                     </p>
-
                     <div className="flex flex-wrap gap-2 mb-4">
-                      <Badge variant="outline" className="flex items-center space-x-1 rtl:space-x-reverse">
-                        <Clock className="w-3 h-3" />
-                        <span className={language === "ar" ? "font-arabic" : "font-english"}>
-                          {service.duration[language]}
-                        </span>
-                      </Badge>
-                      <Badge variant="outline" className="flex items-center space-x-1 rtl:space-x-reverse">
-                        <DollarSign className="w-3 h-3" />
-                        <span className={language === "ar" ? "font-arabic" : "font-english"}>
-                          {service.price[language]}
-                        </span>
+                      <Badge variant="outline" className="flex items-center space-x-1 rtl:space-x-reverse" style={{borderColor: 'var(--primary)', color: 'var(--primary)'}}>
+                        <Clock className="w-3 h-3" style={{color: 'var(--primary)'}} />
+                        <span className={language === "ar" ? "font-arabic" : "font-english"}>{service.duration[language]}</span>
                       </Badge>
                     </div>
-
                     <Link href={`/request?service=${service.key}`}>
-                      <Button className="w-full btn-primary">{t("common.request")}</Button>
+                      <Button className="w-full btn-primary ripple text-lg py-3 rounded-lg font-semibold" style={{backgroundColor: 'var(--primary)', color: 'white', borderColor: 'var(--primary)'}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary-hover)'; e.currentTarget.style.color = 'white'}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary)'; e.currentTarget.style.color = 'white'}}>
+                        {t("common.request")}
+                      </Button>
                     </Link>
                   </CardContent>
                 </Card>

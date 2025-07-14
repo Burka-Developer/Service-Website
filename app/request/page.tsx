@@ -40,6 +40,17 @@ const services = [
   "app",
 ]
 
+// --- Professional Color Palette ---
+const colors = {
+  background: "#FCF7F8", // Off-white (Snow)
+  primary: "#A31621", // Deep Red (Madder)
+  primaryHover: "#8A121B", // Darker red for hover
+  accent: "#FFD700", // Gold accent
+  textPrimary: "#1f2937", // A strong, dark gray for main text
+  textSecondary: "#4b5563", // A softer gray for subtitles
+  white: "#FFFFFF",
+};
+
 export default function RequestPage() {
   const { language, t } = useLanguage()
   const { toast } = useToast()
@@ -139,14 +150,10 @@ export default function RequestPage() {
       <Navbar />
 
       {/* Header */}
-      <section className="bg-gray-50 section-padding border-b border-gray-200">
+      <section className="section-padding border-b" style={{backgroundColor: colors.primary}}>
         <div className="max-w-4xl mx-auto text-center">
-          <h1
-            className={`text-4xl md:text-5xl font-bold mb-4 text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
-          >
-            {t("nav.request")}
-          </h1>
-          <p className={`text-xl text-gray-600 ${language === "ar" ? "font-arabic" : "font-english"}`}>
+          <h1 className={`text-4xl md:text-5xl font-bold mb-4 text-white ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("nav.request")}</h1>
+          <p className={`text-xl mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'rgba(252,247,248,0.85)'}}>
             {language === "ar"
               ? "املأ النموذج أدناه وسنتواصل معك لتأكيد موعد الخدمة"
               : "Fill out the form below and we will contact you to confirm the service appointment"}
@@ -155,12 +162,13 @@ export default function RequestPage() {
       </section>
 
       {/* Request Form */}
-      <section className="section-padding">
+      <section className="section-padding fade-in">
         <div className="max-w-4xl mx-auto">
-          <Card className="card-white">
+          <Card className="card-white shadow-lg fade-in" style={{backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
             <CardHeader>
               <CardTitle
-                className={`text-2xl text-center text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
+                className={`text-2xl text-center ${language === "ar" ? "font-arabic" : "font-english"}`}
+                style={{color: colors.primary}}
               >
                 {language === "ar" ? "نموذج طلب الخدمة" : "Service Request Form"}
               </CardTitle>
@@ -352,7 +360,7 @@ export default function RequestPage() {
                 </div>
 
                 {/* Submit Button */}
-                <Button type="submit" className="w-full btn-primary text-lg py-4" disabled={isSubmitting}>
+                <Button type="submit" className="w-full btn-primary ripple text-lg py-4 rounded-lg font-semibold" style={{backgroundColor: 'var(--primary)', color: 'white', borderColor: 'var(--primary)'}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary-hover)'; e.currentTarget.style.color = 'white'}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary)'; e.currentTarget.style.color = 'white'}} disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-5 h-5 mr-2 animate-spin" />

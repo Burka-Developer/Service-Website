@@ -58,15 +58,12 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-medium transition-colors relative group ${
-                  language === "ar" ? "font-arabic" : "font-english"
-                }`}
+                className={`font-medium nav-underline transition-colors relative group ${language === "ar" ? "font-arabic" : "font-english"}`}
                 style={{color: colors.textPrimary}}
                 onMouseOver={(e) => e.currentTarget.style.color = colors.primary}
                 onMouseOut={(e) => e.currentTarget.style.color = colors.textPrimary}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full" style={{backgroundColor: colors.primary}}></span>
               </Link>
             ))}
 
