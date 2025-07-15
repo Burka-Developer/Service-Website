@@ -47,7 +47,7 @@ export function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className={`font-bold text-xl ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.primary}}>
-                {language === "ar" ? "\u062e\u062f\u0645\u0627\u062a 108" : "108 Services"}
+                {language === "ar" ? "\u062e\u062f\u0645\u0627\u062a 108" : "108 Establishment"}
               </span>
               <span className={`text-xs ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
                 {language === "ar" ? "\u062d\u0644\u0648\u0644 \u0634\u0627\u0645\u0644\u0629" : "Complete Solutions"}
