@@ -14,7 +14,7 @@ const portfolioItems = [
     id: 1,
     title: { ar: "تصميم فيلا سكنية", en: "Residential Villa Design" },
     category: "autocad",
-    image: "/services.jpg?height=300&width=400",
+    image: "/images/house.jpg?height=300&width=400",
     description: {
       ar: "تصميم معماري كامل لفيلا سكنية بمساحة 400 متر مربع",
       en: "Complete architectural design for a 400 sqm residential villa",
@@ -26,7 +26,7 @@ const portfolioItems = [
     id: 2,
     title: { ar: "صيانة نظام التكييف المركزي", en: "Central AC System Maintenance" },
     category: "ac",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/ac.jpg?height=300&width=400",
     description: {
       ar: "صيانة شاملة لنظام التكييف المركزي في مجمع تجاري",
       en: "Complete maintenance of central AC system in commercial complex",
@@ -38,7 +38,7 @@ const portfolioItems = [
     id: 3,
     title: { ar: "موقع إلكتروني لشركة تجارية", en: "Commercial Company Website" },
     category: "web",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/webdev.jpg?height=300&width=400",
     description: {
       ar: "تطوير موقع إلكتروني متجاوب لشركة تجارية مع نظام إدارة المحتوى",
       en: "Responsive website development for commercial company with CMS",
@@ -50,7 +50,7 @@ const portfolioItems = [
     id: 4,
     title: { ar: "أعمال النجارة المخصصة", en: "Custom Carpentry Work" },
     category: "carpentry",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/carpanter.jpg?height=300&width=400",
     description: {
       ar: "تصنيع وتركيب مكتبة خشبية مخصصة للمنزل",
       en: "Manufacturing and installation of custom wooden library for home",
@@ -62,7 +62,7 @@ const portfolioItems = [
     id: 5,
     title: { ar: "تطبيق جوال للتجارة الإلكترونية", en: "E-commerce Mobile App" },
     category: "app",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/app.jpg?height=300&width=400",
     description: {
       ar: "تطوير تطبيق جوال للتجارة الإلكترونية مع نظام الدفع المتكامل",
       en: "Mobile e-commerce app development with integrated payment system",
@@ -74,7 +74,7 @@ const portfolioItems = [
     id: 6,
     title: { ar: "أعمال الدهان الخارجي", en: "Exterior Painting Work" },
     category: "painting",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/painting.jpg?height=300&width=400",
     description: {
       ar: "دهان خارجي كامل لمبنى سكني بألوان عصرية",
       en: "Complete exterior painting of residential building with modern colors",
@@ -86,7 +86,7 @@ const portfolioItems = [
     id: 7,
     title: { ar: "تركيب نظام كهربائي", en: "Electrical System Installation" },
     category: "electrical",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/electrical.jpg?height=300&width=400",
     description: {
       ar: "تركيب نظام كهربائي كامل لمكتب تجاري",
       en: "Complete electrical system installation for commercial office",
@@ -98,7 +98,7 @@ const portfolioItems = [
     id: 8,
     title: { ar: "مخطط مجمع سكني", en: "Residential Complex Plan" },
     category: "autocad",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/images/buildings.jpg?height=300&width=400",
     description: {
       ar: "تصميم مخطط شامل لمجمع سكني يحتوي على 20 وحدة",
       en: "Comprehensive plan design for residential complex with 20 units",
@@ -199,7 +199,7 @@ export default function PortfolioPage() {
               <Card key={item.id} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`, backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
                 <div className="relative">
                   <img
-                    src={item.image || "/services.jpg"}
+                    src={item.image || "/images/house.jpg"}
                     alt={item.title[language]}
                     className="w-full h-48 object-cover rounded-t-xl"
                   />

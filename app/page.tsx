@@ -170,7 +170,7 @@ export default function HomePage() {
                   <CardContent className="p-8 text-center">
                     {/* Add a service image above the icon */}
                     <img
-                      src={`/servcies.jpg`}
+                      src={`/images/shopping.jpg`}
                       alt={t(`services.${service.key}`)}
                       className="w-16 h-16 mx-auto mb-4 rounded-xl object-cover border border-[color:var(--primary)] group-hover:scale-110 transition-transform"
                       style={{ background: '#fafafa' }}
