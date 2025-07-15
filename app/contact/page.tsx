@@ -311,22 +311,17 @@ export default function ContactPage() {
               {language === "ar" ? "موقعنا على الخريطة" : "Our Location on Map"}
             </h2>
             <div className="card-white">
-              <div className="bg-gray-50 h-96 flex items-center justify-center rounded-lg border border-gray-200">
-                <div className="text-center space-y-4">
-                  <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center mx-auto">
-                    <MapPin className="w-10 h-10 text-white" />
-                  </div>
-                  <p className={`text-gray-700 text-lg ${language === "ar" ? "font-arabic" : "font-english"}`}>
-                    {language === "ar"
-                      ? "خريطة جوجل التفاعلية ستظهر هنا"
-                      : "Interactive Google Map will be embedded here"}
-                  </p>
-                  <p className={`text-sm text-gray-500 ${language === "ar" ? "font-arabic" : "font-english"}`}>
-                    {language === "ar"
-                      ? "حي العارض، الرياض، المملكة العربية السعودية"
-                      : "Al Arid District, Riyadh, Saudi Arabia"}
-                  </p>
-                </div>
+              <div className="bg-gray-50 h-96 flex items-center justify-center rounded-lg border border-gray-200 overflow-hidden">
+                <iframe
+                  title="Riyadh Location"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.845278964839!2d46.67529531500144!3d24.77426598408959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f038c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1680000000000!5m2!1sen!2ssa"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
               </div>
             </div>
           </div>

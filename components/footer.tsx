@@ -3,6 +3,8 @@
 import Link from "next/link"
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, MessageCircle } from "lucide-react"
 import { useLanguage } from "@/contexts/language-context"
+import { FaWhatsapp, FaInstagram, FaFacebook } from "react-icons/fa"
+import { SiTiktok, SiX, SiSnapchat } from "react-icons/si"
 
 // --- Professional Color Palette ---
 // Using the same palette as the homepage ensures brand consistency.
@@ -68,7 +70,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Phone className="w-5 h-5" style={{color: colors.iconColor}} />
-                <span className="text-sm" style={{color: colors.textSecondary}}>+966 XX XXX XXXX</span>
+                <span className="text-sm" style={{color: colors.textSecondary}}>+966 53 530 2532</span>
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Mail className="w-5 h-5" style={{color: colors.iconColor}} />
@@ -110,20 +112,23 @@ export function Footer() {
               className={`font-semibold text-lg mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`}
               style={{color: colors.textPrimary}}
             >
-              {language === "ar" ? "تابعنا" : "Follow Us"}
+              {language === "ar" ? "\u062a\u0627\u0628\u0639\u0646\u0627" : "Follow Us"}
             </h3>
             <div className="flex space-x-4 rtl:space-x-reverse">
-              <a href="#" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
-                <Facebook className="w-6 h-6" />
+              <a href="https://www.facebook.com/share/1CJps5icpK/" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
+                <FaFacebook className="w-6 h-6" />
               </a>
-              <a href="#" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
-                <Twitter className="w-6 h-6" />
+              <a href="https://x.com/S7Yol?t=iIhlFzrCGWtUxn7VnNDM5A&s=09" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
+                <SiX className="w-6 h-6" />
               </a>
-              <a href="#" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
-                <Instagram className="w-6 h-6" />
+              <a href="https://www.instagram.com/108.cl?igsh=aXM1b2NiNGE0bmhi" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
+                <FaInstagram className="w-6 h-6" />
               </a>
-              <a href="#" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
-                <MessageCircle className="w-6 h-6" />
+              <a href="https://www.snapchat.com/add/est.108?share_id=-2aj4hN-84w&locale=ar-SA" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
+                <SiSnapchat className="w-6 h-6" />
+              </a>
+              <a href="https://www.tiktok.com/@108.cl?_t=ZS-8xh9oCLUBrm&_r=1" target="_blank" rel="noopener noreferrer" className="transition-colors" style={{color: colors.textSecondary}} onMouseOver={(e) => e.currentTarget.style.color = colors.hover} onMouseOut={(e) => e.currentTarget.style.color = colors.textSecondary}>
+                <SiTiktok className="w-6 h-6" />
               </a>
             </div>
           </div>
@@ -138,12 +143,12 @@ export function Footer() {
 
       {/* WhatsApp Float Button - Kept green for brand recognition */}
       <a
-        href="https://wa.me/966XXXXXXXXX"
+        href="https://wa.me/966535302532"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors z-50"
       >
-        <MessageCircle className="w-6 h-6" />
+        <FaWhatsapp className="w-6 h-6" />
       </a>
     </footer>
   )
