@@ -157,8 +157,8 @@ export default function ContactPage() {
                     >
                       {language === "ar" ? "الهاتف" : "Phone"}
                     </h3>
-                    <p className="text-gray-600">+966 XX XXX XXXX</p>
-                    <p className="text-gray-600">+966 XX XXX XXXX</p>
+                    <p className="text-gray-600">+966 53 530 2532</p>
+                    <p className="text-gray-600">+966 53 530 2532</p>
                   </div>
                 </div>
 
@@ -308,21 +308,17 @@ export default function ContactPage() {
             <h2
               className={`text-3xl font-bold text-black mb-8 text-center ${language === "ar" ? "font-arabic" : "font-english"}`}
             >
-              {language === "ar" ? "موقعنا على الخريطة" : "Our Location on Map"}
+              {language === "ar" ? "أدخل عنوانك" : "Enter Your Address"}
             </h2>
-            <div className="card-white">
-              <div className="bg-gray-50 h-96 flex items-center justify-center rounded-lg border border-gray-200 overflow-hidden">
-                <iframe
-                  title="Riyadh Location"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.845278964839!2d46.67529531500144!3d24.77426598408959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f038c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1680000000000!5m2!1sen!2ssa"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen={true}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
-              </div>
+            <div className="card-white max-w-xl mx-auto">
+              <label htmlFor="user-address" className={`block mb-2 font-medium ${language === "ar" ? "font-arabic" : "font-english"}`}>{language === "ar" ? "العنوان" : "Address"}</label>
+              <input
+                id="user-address"
+                name="user-address"
+                type="text"
+                className="input-field"
+                placeholder={language === "ar" ? "اكتب عنوانك هنا..." : "Type your address here..."}
+              />
             </div>
           </div>
         </div>

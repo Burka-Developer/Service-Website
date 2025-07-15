@@ -56,26 +56,7 @@ export function Navbar() {
           </Link>
 
           {/* Social & WhatsApp */}
-          <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse ml-6">
-            <a href="https://wa.me/966535302532" target="_blank" rel="noopener noreferrer" title="WhatsApp" className="hover:scale-110 transition-transform">
-              <FaWhatsapp className="w-6 h-6" style={{color: '#25D366'}} />
-            </a>
-            <a href="https://x.com/S7Yol?t=iIhlFzrCGWtUxn7VnNDM5A&s=09" target="_blank" rel="noopener noreferrer" title="X (Twitter)" className="hover:scale-110 transition-transform">
-              <SiX className="w-6 h-6" style={{color: colors.primary}} />
-            </a>
-            <a href="https://www.instagram.com/108.cl?igsh=aXM1b2NiNGE0bmhi" target="_blank" rel="noopener noreferrer" title="Instagram" className="hover:scale-110 transition-transform">
-              <FaInstagram className="w-6 h-6" style={{color: colors.primary}} />
-            </a>
-            <a href="https://www.snapchat.com/add/est.108?share_id=-2aj4hN-84w&locale=ar-SA" target="_blank" rel="noopener noreferrer" title="Snapchat" className="hover:scale-110 transition-transform">
-              <SiSnapchat className="w-6 h-6" style={{color: colors.primary}} />
-            </a>
-            <a href="https://www.tiktok.com/@108.cl?_t=ZS-8xh9oCLUBrm&_r=1" target="_blank" rel="noopener noreferrer" title="TikTok" className="hover:scale-110 transition-transform">
-              <SiTiktok className="w-6 h-6" style={{color: colors.primary}} />
-            </a>
-            <a href="https://www.facebook.com/share/1CJps5icpK/" target="_blank" rel="noopener noreferrer" title="Facebook" className="hover:scale-110 transition-transform">
-              <FaFacebook className="w-6 h-6" style={{color: colors.primary}} />
-            </a>
-          </div>
+          {/* No WhatsApp or social buttons as per user request */}
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">

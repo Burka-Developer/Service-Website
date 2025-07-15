@@ -168,6 +168,21 @@ const servicesData = [
   },
 ]
 
+const serviceImages = {
+  carpentry: "/images/carpanter.jpg",
+  aluminum: "/images/buildings.jpg",
+  welding: "/images/buildings.jpg",
+  electrical: "/images/electrical.jpg",
+  generator: "/images/house.jpg",
+  ac: "/images/ac.jpg",
+  painting: "/images/painting.jpg",
+  upholstery: "/images/house.jpg",
+  plumbing: "/images/plumber.jpg",
+  autocad: "/images/app.jpg",
+  web: "/images/webdev.jpg",
+  app: "/images/app.jpg",
+}
+
 export default function ServicesPage() {
   const { language, t } = useLanguage()
 
@@ -193,13 +208,28 @@ export default function ServicesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {servicesData.map((service, idx) => {
               const Icon = service.icon
+              const imageSrc = serviceImages[service.key] || "/images/house.jpg"
               return (
-                <Card key={service.key} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`}}>
-                  <CardHeader>
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mb-4 border group-hover:bg-[color:var(--primary)] group-hover:shadow-lg transition-colors" style={{borderColor: 'var(--primary)'}}>
-                      <Icon className="w-8 h-8" style={{color: 'var(--primary)'}} />
+                <Card
+                  key={service.key}
+                  className="service-card group cursor-pointer fade-in transform transition-transform duration-300 hover:scale-[1.04] hover:shadow-2xl border overflow-hidden max-w-md mx-auto bg-white/90 backdrop-blur-md"
+                  style={{animationDelay: `${idx * 80}ms`, borderRadius: '2rem', boxShadow: '0 6px 32px 0 rgba(163,22,33,0.10)'}}
+                >
+                  <CardHeader className="p-0">
+                    <div className="relative w-full aspect-[5/3] rounded-t-2xl overflow-hidden border-b border-[color:var(--primary)] bg-[#fafafa] group-hover:shadow-xl transition-all duration-500">
+                      <img
+                        src={imageSrc}
+                        alt={t(`services.${service.key}`)}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
                     </div>
-                    <CardTitle className={`text-xl ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'var(--primary)'}}>
+                    <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto -mt-10 mb-2 border transition-all duration-300 z-10 relative shadow-lg group-hover:scale-105" style={{borderColor: 'var(--primary)'}}>
+                      <Icon className="w-10 h-10 transition-colors duration-300" style={{color: 'var(--primary)'}} />
+                    </div>
+                    <CardTitle className={`text-2xl text-center font-bold ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'var(--primary)'}}>
                       {t(`services.${service.key}`)}
                     </CardTitle>
                   </CardHeader>

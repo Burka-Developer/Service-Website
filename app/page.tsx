@@ -58,24 +58,25 @@ const features = [
 ]
 
 const serviceImages = [
-  "/images/carpanter.jpg",
-  "/images/electrical.jpg",
-  "/images/painting.jpg",
-  "/images/shopping.jpg",
-  "/images/ecommerce.jpg",
-  "/images/app.jpg",
-  "/images/webdev.jpg",
-  "/images/ac.jpg",
-  "/images/house.jpg",
-  "/images/plumber.jpg",
-  "/images/buildings.jpg",
+  "/images/Carpentery.jpg", // carpentry
+  "/images/Aluminum Work.jpg", // aluminum
+  "/images/Wielding Work.jpg", // welding
+  "/images/electrical Work.jpg", // electrical
+  "/images/Diesel Engine.jpg", // generator
+  "/images/ac.jpg", // ac
+  "/images/painting.jpg", // painting
+  "/images/imges work.webp", // upholstery (best match)
+  "/images/Plumbling.png", // plumbing
+  "/images/Auto Cad.webp", // autocad
+  "/images/Web Development.jpg", // web
+  "/images/App Development.jpg", // app
 ];
 
 export default function HomePage() {
   const { language, t } = useLanguage()
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.background }}>
+    <div className="min-h-screen" style={{ backgroundColor: colors.background, scrollBehavior: 'smooth' }}>
       <Navbar />
 
       {/* Hero Section */}
@@ -180,29 +181,27 @@ export default function HomePage() {
               return (
                 <Card
                   key={service.key}
-                  className="service-card group cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-sm hover:shadow-xl border overflow-hidden"
-                  style={{ backgroundColor: colors.background, borderColor: `${colors.primary}20` }}
+                  className="service-card group cursor-pointer fade-in transform transition-transform duration-300 hover:scale-[1.04] hover:shadow-2xl border overflow-hidden max-w-md mx-auto bg-white/90 backdrop-blur-md"
+                  style={{borderRadius: '2rem', boxShadow: '0 6px 32px 0 rgba(163,22,33,0.10)'}}
                 >
-                  <CardContent className="p-8 text-center">
-                    {/* Service image with hover animation */}
-                    <div className="relative w-36 h-36 mx-auto mb-4 rounded-2xl overflow-hidden border border-[color:var(--primary)] bg-[#fafafa] md:w-40 md:h-40 lg:w-44 lg:h-44">
+                  <CardContent className="p-0 text-center">
+                    <div className="relative w-full aspect-[5/3] rounded-t-2xl overflow-hidden border-b border-[color:var(--primary)] bg-[#fafafa] group-hover:shadow-xl transition-all duration-500">
                       <img
                         src={imageSrc}
                         alt={t(`services.${service.key}`)}
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2"
-                        style={{}}
+                        className="object-cover w-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
+                        style={{ height: 'calc(100% + 10px)' }}
+                        loading="lazy"
+                        decoding="async"
                       />
-                      {/* Optional: subtle overlay on hover for extra effect */}
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
                     </div>
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-red-50 transition-colors border -mt-10 z-10 relative" style={{borderColor: `${colors.primary}20`}}>
-                      <Icon className="w-8 h-8" style={{color: colors.primary}} />
+                    <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto -mt-10 mb-2 border transition-all duration-300 z-10 relative shadow-lg group-hover:scale-105" style={{borderColor: colors.primary}}>
+                      <Icon className="w-10 h-10 transition-colors duration-300" style={{color: colors.primary}} />
                     </div>
                     <h3
-                      className={`font-bold text-lg mb-2 ${
-                        language === "ar" ? "font-arabic" : "font-english"
-                      }`}
-                       style={{ color: colors.textPrimary }}
+                      className={`font-bold text-2xl mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
+                      style={{ color: colors.textPrimary }}
                     >
                       {t(`services.${service.key}`)}
                     </h3>
@@ -305,7 +304,7 @@ export default function HomePage() {
             <div className="h-96 flex items-center justify-center rounded-lg border overflow-hidden" style={{backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
               <iframe
                 title="Riyadh Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.845278964839!2d46.67529531500144!3d24.77426598408959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f038c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sRiyadh%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1680000000000!5m2!1sen!2ssa"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.845278964839!2d46.67529531500144!3d24.87426598408959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f038c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBuilding%204393%2C%20Al%20Shareeh%20St%2C%20Al%20Arid%2C%20Riyadh%2013335%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1680000000000!5m2!1sen!2ssa"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -66,6 +66,11 @@ export default function RequestPage() {
     comments: "",
     file: null as File | null,
   })
+  const [minDate, setMinDate] = useState("")
+
+  useEffect(() => {
+    setMinDate(new Date().toISOString().split("T")[0])
+  }, [])
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -237,20 +242,17 @@ export default function RequestPage() {
                       className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
                     >
                       <MapPin className="w-4 h-4 inline mr-1" />
-                      {language === "ar" ? "المنطقة في الرياض" : "Area in Riyadh"} *
+                      {language === "ar" ? "العنوان" : "Address"} *
                     </Label>
-                    <Select value={formData.address} onValueChange={(value) => handleInputChange("address", value)}>
-                      <SelectTrigger className="input-field">
-                        <SelectValue placeholder={language === "ar" ? "اختر المنطقة" : "Select Area"} />
-                      </SelectTrigger>
-                      <SelectContent className="bg-white border border-gray-300">
-                        {riyadhAreas.map((area, index) => (
-                          <SelectItem key={index} value={area[language]} className="hover:bg-gray-50">
-                            <span className={language === "ar" ? "font-arabic" : "font-english"}>{area[language]}</span>
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                    <Input
+                      id="address"
+                      type="text"
+                      required
+                      value={formData.address}
+                      onChange={(e) => handleInputChange("address", e.target.value)}
+                      placeholder={language === "ar" ? "اكتب العنوان الكامل" : "Enter full address"}
+                      className="input-field"
+                    />
                   </div>
                 </div>
 
@@ -294,7 +296,7 @@ export default function RequestPage() {
                       required
                       value={formData.date}
                       onChange={(e) => handleInputChange("date", e.target.value)}
-                      min={new Date().toISOString().split("T")[0]}
+                      min={minDate}
                       className="input-field"
                     />
                   </div>
@@ -304,7 +306,7 @@ export default function RequestPage() {
                       htmlFor="time"
                       className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
                     >
-                      {language === "ar" ? "الوقت المفضل" : "Preferred Time"} *
+                      {t("common.time")} *
                     </Label>
                     <Input
                       id="time"
@@ -317,57 +319,34 @@ export default function RequestPage() {
                   </div>
                 </div>
 
+                {/* Comments */}
+                <div>
+                  <Label htmlFor="comments" className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("common.comments")}</Label>
+                  <Textarea
+                    id="comments"
+                    value={formData.comments}
+                    onChange={(e) => handleInputChange("comments", e.target.value)}
+                    className="input-field"
+                  />
+                </div>
+
                 {/* File Upload */}
                 <div>
-                  <Label htmlFor="file" className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}>
-                    <Upload className="w-4 h-4 inline mr-1" />
-                    {language === "ar" ? "رفع ملف (اختياري)" : "Upload File (Optional)"}
-                  </Label>
+                  <Label htmlFor="file" className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}>{t("common.attachment")}</Label>
                   <Input
                     id="file"
                     type="file"
-                    accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.dwg,.cad"
+                    accept="image/*,application/pdf"
                     onChange={handleFileChange}
                     className="input-field"
                   />
-                  <p className={`text-sm text-gray-500 mt-1 ${language === "ar" ? "font-arabic" : "font-english"}`}>
-                    {language === "ar"
-                      ? "يمكنك رفع ملفات CAD، صور، أو مستندات (حد أقصى 10 ميجابايت)"
-                      : "You can upload CAD files, images, or documents (max 10MB)"}
-                  </p>
                 </div>
 
-                {/* Comments */}
-                <div>
-                  <Label
-                    htmlFor="comments"
-                    className={`text-black ${language === "ar" ? "font-arabic" : "font-english"}`}
-                  >
-                    {language === "ar" ? "تفاصيل إضافية" : "Additional Details"}
-                  </Label>
-                  <Textarea
-                    id="comments"
-                    rows={4}
-                    value={formData.comments}
-                    onChange={(e) => handleInputChange("comments", e.target.value)}
-                    placeholder={
-                      language === "ar"
-                        ? "اكتب أي تفاصيل إضافية حول الخدمة المطلوبة..."
-                        : "Write any additional details about the required service..."
-                    }
-                    className={`input-field ${language === "ar" ? "font-arabic" : "font-english"}`}
-                  />
-                </div>
-
-                {/* Submit Button */}
-                <Button type="submit" className="w-full btn-primary ripple text-lg py-4 rounded-lg font-semibold" style={{backgroundColor: 'var(--primary)', color: 'white', borderColor: 'var(--primary)'}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary-hover)'; e.currentTarget.style.color = 'white'}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'var(--primary)'; e.currentTarget.style.color = 'white'}} disabled={isSubmitting}>
+                <Button type="submit" className="btn-primary w-full text-lg" disabled={isSubmitting}>
                   {isSubmitting ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("common.loading")}</span>
-                    </>
+                    <span className="flex items-center justify-center"><Loader2 className="animate-spin w-5 h-5 mr-2" />{language === "ar" ? "جاري الإرسال..." : "Submitting..."}</span>
                   ) : (
-                    <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("common.submit")}</span>
+                    <span>{language === "ar" ? "إرسال الطلب" : "Submit Request"}</span>
                   )}
                 </Button>
               </form>
@@ -375,8 +354,7 @@ export default function RequestPage() {
           </Card>
         </div>
       </section>
-
       <Footer />
     </div>
-  )
+  );
 }

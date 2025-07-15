@@ -169,3 +169,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
+
+html {
+  scroll-behavior: smooth;
+}
