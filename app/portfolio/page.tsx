@@ -14,7 +14,7 @@ const portfolioItems = [
     id: 1,
     title: { ar: "تصميم فيلا سكنية", en: "Residential Villa Design" },
     category: "autocad",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/services.jpg?height=300&width=400",
     description: {
       ar: "تصميم معماري كامل لفيلا سكنية بمساحة 400 متر مربع",
       en: "Complete architectural design for a 400 sqm residential villa",
@@ -199,7 +199,7 @@ export default function PortfolioPage() {
               <Card key={item.id} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`, backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
                 <div className="relative">
                   <img
-                    src={item.image || "/placeholder.svg"}
+                    src={item.image || "/services.jpg"}
                     alt={item.title[language]}
                     className="w-full h-48 object-cover rounded-t-xl"
                   />
