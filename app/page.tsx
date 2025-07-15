@@ -57,6 +57,20 @@ const features = [
   { icon: Phone, text: { ar: "استجابة سريعة", en: "Quick Response" } },
 ]
 
+const serviceImages = [
+  "/images/carpanter.jpg",
+  "/images/electrical.jpg",
+  "/images/painting.jpg",
+  "/images/shopping.jpg",
+  "/images/ecommerce.jpg",
+  "/images/app.jpg",
+  "/images/webdev.jpg",
+  "/images/ac.jpg",
+  "/images/house.jpg",
+  "/images/plumber.jpg",
+  "/images/buildings.jpg",
+];
+
 export default function HomePage() {
   const { language, t } = useLanguage()
 
@@ -161,21 +175,27 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             {services.map((service, idx) => {
               const Icon = service.icon
+              // Assign a random image for each card (cycled if more cards than images)
+              const imageSrc = serviceImages[idx % serviceImages.length];
               return (
                 <Card
                   key={service.key}
-                  className="service-card group cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-sm hover:shadow-xl border"
+                  className="service-card group cursor-pointer transform hover:scale-105 transition-transform duration-300 shadow-sm hover:shadow-xl border overflow-hidden"
                   style={{ backgroundColor: colors.background, borderColor: `${colors.primary}20` }}
                 >
                   <CardContent className="p-8 text-center">
-                    {/* Add a service image above the icon */}
-                    <img
-                      src={`/images/shopping.jpg`}
-                      alt={t(`services.${service.key}`)}
-                      className="w-16 h-16 mx-auto mb-4 rounded-xl object-cover border border-[color:var(--primary)] group-hover:scale-110 transition-transform"
-                      style={{ background: '#fafafa' }}
-                    />
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-red-50 transition-colors border" style={{borderColor: `${colors.primary}20`, marginTop: '-2.5rem'}}>
+                    {/* Service image with hover animation */}
+                    <div className="relative w-36 h-36 mx-auto mb-4 rounded-2xl overflow-hidden border border-[color:var(--primary)] bg-[#fafafa] md:w-40 md:h-40 lg:w-44 lg:h-44">
+                      <img
+                        src={imageSrc}
+                        alt={t(`services.${service.key}`)}
+                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-2"
+                        style={{}}
+                      />
+                      {/* Optional: subtle overlay on hover for extra effect */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
+                    </div>
+                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-red-50 transition-colors border -mt-10 z-10 relative" style={{borderColor: `${colors.primary}20`}}>
                       <Icon className="w-8 h-8" style={{color: colors.primary}} />
                     </div>
                     <h3
