@@ -76,7 +76,7 @@ const translations = {
     "nav.language": "العربية",
 
     // Home Page
-    "home.hero.title": "Your One-Stop Solution for Home & Tech Services in Riyadh",
+    "home.hero.title": "Your One-Stop Solution for Home & Tech Services in Saudia Arabia",
     "home.hero.subtitle":
       "Professional services in carpentry, plumbing, electrical, AC, web development, app development and more",
     "home.hero.cta1": "View Services",
@@ -115,8 +115,8 @@ const translations = {
     "common.error": "Error occurred",
 
     // Footer
-    "footer.company": "108 Services Company",
-    "footer.description": "We provide diverse professional services in Riyadh",
+    "footer.company": "108 Establishment",
+    "footer.description": "We provide diverse professional services in Saudia Arabia",
     "footer.address": "Address",
     "footer.quick_links": "Quick Links",
     "footer.rights": "All rights reserved",

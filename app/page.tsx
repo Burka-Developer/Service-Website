@@ -58,18 +58,18 @@ const features = [
 ]
 
 const serviceImages = [
-  "/images/Carpentery.jpg", // carpentry
+  "/images/carpanter.jpg", // carpentry
   "/images/Aluminum Work.jpg", // aluminum
   "/images/Wielding Work.jpg", // welding
-  "/images/electrical Work.jpg", // electrical
+  "/images/electrical.jpg", // electrical
   "/images/Diesel Engine.jpg", // generator
   "/images/ac.jpg", // ac
   "/images/painting.jpg", // painting
-  "/images/imges work.webp", // upholstery (best match)
-  "/images/Plumbling.png", // plumbing
+  "/images/imges work.webp", // upholstery
+  "/images/plumber.jpg", // plumbing
   "/images/Auto Cad.webp", // autocad
-  "/images/Web Development.jpg", // web
-  "/images/App Development.jpg", // app
+  "/images/webdev.jpg", // web
+  "/images/app.jpg", // app
 ];
 
 export default function HomePage() {
@@ -81,77 +81,106 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden" style={{ backgroundColor: colors.background }}>
-        <div className="container-max section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[600px]">
-            <div className="fade-in space-y-8">
-              <div className="space-y-6">
-                <h1
-                  className={`text-5xl md:text-7xl font-bold leading-tight ${
+  <div className="container-max section-padding">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-h-[600px]">
+      {/* --- Text Content Column (Left) --- */}
+      <div className="fade-in space-y-8">
+        <div className="space-y-6">
+          <h1
+            className={`text-5xl md:text-7xl font-bold leading-tight ${
+              language === "ar" ? "font-arabic" : "font-english"
+            }`}
+            style={{ color: colors.primary }}
+          >
+            {language === "ar"
+              ? t("home.hero.title")
+              : "Your One-Stop Solution for Home & Tech Services"}
+          </h1>
+          <p
+            className={`text-xl leading-relaxed max-w-lg ${
+              language === "ar" ? "font-arabic" : "font-english"
+            }`}
+            style={{ color: colors.textSecondary }}
+          >
+            {t("home.hero.subtitle")}
+          </p>
+        </div>
+
+        {/* Features */}
+        <div className="flex flex-wrap gap-4">
+          {features.map((feature, index) => {
+            const Icon = feature.icon;
+            return (
+              <div
+                key={index}
+                className="flex items-center space-x-3 rtl:space-x-reverse bg-white/60 rounded-full px-6 py-3 border"
+                style={{ borderColor: `${colors.primary}20` }}
+              >
+                <Icon className="w-5 h-5" style={{ color: colors.primary }} />
+                <span
+                  className={`text-sm font-medium ${
                     language === "ar" ? "font-arabic" : "font-english"
                   }`}
                   style={{ color: colors.primary }}
                 >
-                  {/* Remove 'in Riyadh' from the English translation */}
-                  {language === "ar"
-                    ? t("home.hero.title")
-                    : "Your One-Stop Solution for Home & Tech Services"}
-                </h1>
-                <p
-                  className={`text-xl leading-relaxed max-w-lg ${language === "ar" ? "font-arabic" : "font-english"}`}
-                   style={{ color: colors.textSecondary }}
-                >
-                  {t("home.hero.subtitle")}
-                </p>
+                  {feature.text[language]}
+                </span>
               </div>
-
-              {/* Features */}
-              <div className="flex flex-wrap gap-4">
-                {features.map((feature, index) => {
-                  const Icon = feature.icon
-                  return (
-                    <div
-                      key={index}
-                      className="flex items-center space-x-3 rtl:space-x-reverse bg-white/60 rounded-full px-6 py-3 border"
-                      style={{ borderColor: `${colors.primary}20`}}
-                    >
-                      <Icon className="w-5 h-5" style={{ color: colors.primary }} />
-                      <span
-                        className={`text-sm font-medium ${language === "ar" ? "font-arabic" : "font-english"}`}
-                        style={{ color: colors.primary }}
-                      >
-                        {feature.text[language]}
-                      </span>
-                    </div>
-                  )
-                })}
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/services">
-                  <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-4 text-white hover:text-white" style={{backgroundColor: colors.primary, color: colors.white}} onMouseOver={(e) => e.currentTarget.style.backgroundColor = colors.primaryHover} onMouseOut={(e) => e.currentTarget.style.backgroundColor = colors.primary}>
-                    <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("home.hero.cta1")}</span>
-                    <ArrowRight className={`w-5 h-5 ${language === "ar" ? "mr-2 rotate-180" : "ml-2"}`} />
-                  </Button>
-                </Link>
-                <Link href="/request">
-                   <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-4 bg-transparent border hover:bg-transparent" style={{color: colors.primary, borderColor: colors.primary}} onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}} onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}>
-                    <span className={language === "ar" ? "font-arabic" : "font-english"}>{t("home.hero.cta2")}</span>
-                  </Button>
-                </Link>
-              </div>
-            </div>
-            {/* Add a hero image for visual appeal */}
-            <div className="slide-up flex items-center justify-center">
-              <img
-                src="/placeholder.jpg"
-                alt="Service Hero"
-                className="rounded-2xl shadow-lg object-cover h-96 w-full max-w-lg border border-[color:var(--primary)]"
-                style={{ background: '#eee' }}
-              />
-            </div>
-          </div>
+            );
+          })}
         </div>
-      </section>
+
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+          <Link href="/services">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto text-lg px-8 py-4 text-white hover:text-white"
+              style={{ backgroundColor: colors.primary, color: colors.white }}
+              onMouseOver={(e) => (e.currentTarget.style.backgroundColor = colors.primaryHover)}
+              onMouseOut={(e) => (e.currentTarget.style.backgroundColor = colors.primary)}
+            >
+              <span className={language === "ar" ? "font-arabic" : "font-english"}>
+                {t("home.hero.cta1")}
+              </span>
+              <ArrowRight className={`w-5 h-5 ${language === "ar" ? "mr-2 rotate-180" : "ml-2"}`} />
+            </Button>
+          </Link>
+          <Link href="/request">
+            <Button
+              size="lg"
+              className="w-full sm:w-auto text-lg px-8 py-4 bg-transparent border hover:bg-transparent"
+              style={{ color: colors.primary, borderColor: colors.primary }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.backgroundColor = colors.primary;
+                e.currentTarget.style.color = colors.white;
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.backgroundColor = "transparent";
+                e.currentTarget.style.color = colors.primary;
+              }}
+            >
+              <span className={language === "ar" ? "font-arabic" : "font-english"}>
+                {t("home.hero.cta2")}
+              </span>
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* --- Hero Image Column (Right) --- */}
+      
+      <div className="slide-up mt-10 flex justify-center lg:justify-end">
+        <img
+          src="/placeholder.jpg"
+          alt="Service Hero"
+         
+          className="rounded-2xl shadow-lg object-cover h-full w-full max-w-lg border border-[color:var(--primary)] bg-[#eee] object-top"
+        />
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Services Section */}
       <section className="bg-white section-padding">

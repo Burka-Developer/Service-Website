@@ -20,17 +20,17 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "108 Services - خدمات 108",
+  title: "108 Establishment - خدمات 108",
   description:
-    "Your One-Stop Solution for Home & Tech Services - حلولك الشاملة للخدمات المنزلية والتقنية في الرياض",
+    "Your One-Stop Solution for Home & Tech Services - حلولك الشاملة للخدمات المنزلية والتقنية في السعودية",
   keywords:
-    "services, maintenance, construction, IT, Riyadh, Saudi Arabia, خدمات, صيانة, إنشاءات, تقنية المعلومات, الرياض",
-  authors: [{ name: "108 Services" }],
+    "services, maintenance, construction, IT, Saudi Arabia, خدمات, صيانة, إنشاءات, تقنية المعلومات, السعودية",
+  authors: [{ name: "108 Establishment" }],
   openGraph: {
-    title: "108 Services - خدمات 108",
-    description: "Professional services in Riyadh - خدمات احترافية في الرياض",
+    title: "108 Establishment - خدمات 108",
+    description: "Professional services in Saudia Arabia - خدمات احترافية في السعودية",
     url: "https://108.cl",
-    siteName: "108 Services",
+    siteName: "108 Establishment",
     locale: "ar_SA",
     type: "website",
   }
@@ -42,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ar" dir="rtl" suppressHydrationWarning>
+    <html lang="en" dir="ltr" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/logo.png" type="image/png" />
       </head>

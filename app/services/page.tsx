@@ -170,15 +170,15 @@ const servicesData = [
 
 const serviceImages = {
   carpentry: "/images/carpanter.jpg",
-  aluminum: "/images/buildings.jpg",
-  welding: "/images/buildings.jpg",
+  aluminum: "/images/Aluminum Work.jpg",
+  welding: "/images/Wielding Work.jpg",
   electrical: "/images/electrical.jpg",
-  generator: "/images/house.jpg",
+  generator: "/images/Diesel Engine.jpg",
   ac: "/images/ac.jpg",
   painting: "/images/painting.jpg",
-  upholstery: "/images/house.jpg",
+  upholstery: "/images/imges work.webp",
   plumbing: "/images/plumber.jpg",
-  autocad: "/images/app.jpg",
+  autocad: "/images/Auto Cad.webp",
   web: "/images/webdev.jpg",
   app: "/images/app.jpg",
 }

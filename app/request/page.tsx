@@ -268,9 +268,9 @@ export default function RequestPage() {
                     <SelectTrigger className="input-field">
                       <SelectValue placeholder={language === "ar" ? "اختر الخدمة" : "Select Service"} />
                     </SelectTrigger>
-                    <SelectContent className="bg-white border border-gray-300">
+                    <SelectContent className="bg-white border border-red-500">
                       {services.map((service) => (
-                        <SelectItem key={service} value={service} className="hover:bg-gray-50">
+                        <SelectItem key={service} value={service} className="hover:bg-red-500">
                           <span className={language === "ar" ? "font-arabic" : "font-english"}>
                             {t(`services.${service}`)}
                           </span>
