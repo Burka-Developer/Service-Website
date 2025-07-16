@@ -52,19 +52,9 @@ export function Footer() {
                 <MapPin className="w-5 h-5 mt-1 flex-shrink-0" style={{color: colors.iconColor}} />
                 <div className={`text-sm ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
                   {language === "ar" ? (
-                    <>
-                      العنوان المختصر: RRDA4393<br />
-                      رقم المبنى: 4393، اسم الشارع: الشريح<br />
-                      الرقم الفرعي: 7354، اسم الحي: حي العارض<br />
-                      الرمز البريدي: 13335، المدينة: الرياض
-                    </>
+                    <>الرياض، المملكة العربية السعودية</>
                   ) : (
-                    <>
-                      Short Address: RRDA4393<br />
-                      Building: 4393, Street: Al Shareeh<br />
-                      Unit: 7354, District: Al Arid<br />
-                      Postal Code: 13335, City: Riyadh
-                    </>
+                    <>Riyadh, Saudi Arabia</>
                   )}
                 </div>
               </div>
@@ -136,7 +126,7 @@ export function Footer() {
 
         <div className="mt-8 pt-8 text-center" style={{borderTop: `1px solid ${colors.borderColor}`}}>
           <p className={`text-sm ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
-            © 2024 108 Services. {t("footer.rights")}
+            © 2025 108 Establishment. All rights are reserved
           </p>
         </div>
       </div>

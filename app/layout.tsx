@@ -43,6 +43,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/logo.png" type="image/png" />
+      </head>
       <body className={`${cairo.variable} ${poppins.variable} font-sans antialiased bg-white`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           <LanguageProvider>

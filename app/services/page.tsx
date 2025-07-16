@@ -215,20 +215,24 @@ export default function ServicesPage() {
                   className="service-card group cursor-pointer fade-in transform transition-transform duration-300 hover:scale-[1.04] hover:shadow-2xl border overflow-hidden max-w-md mx-auto bg-white/90 backdrop-blur-md"
                   style={{animationDelay: `${idx * 80}ms`, borderRadius: '2rem', boxShadow: '0 6px 32px 0 rgba(163,22,33,0.10)'}}
                 >
-                  <CardHeader className="p-0">
-                    <div className="relative w-full aspect-[5/3] rounded-t-2xl overflow-hidden border-b border-[color:var(--primary)] bg-[#fafafa] group-hover:shadow-xl transition-all duration-500">
-                      <img
-                        src={imageSrc}
-                        alt={t(`services.${service.key}`)}
-                        className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
+                  {/* Large Image with Overlay */}
+                  <div className="relative w-full" style={{height: '260px'}}>
+                    <img
+                      src={imageSrc}
+                      alt={t(`services.${service.key}`)}
+                      className="object-cover w-full h-full rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
+                      loading="lazy"
+                      decoding="async"
+                      style={{height: '100%', width: '100%'}}
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none transition-all duration-500 group-hover:from-black/70 group-hover:via-black/20" />
+                    {/* Icon Overlay */}
+                    <div className="absolute bottom-4 left-4 bg-white rounded-xl p-3 shadow-lg flex items-center justify-center border border-[color:var(--primary)]" style={{zIndex:2}}>
+                      <Icon className="w-8 h-8" style={{color: 'var(--primary)'}} />
                     </div>
-                    <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto -mt-10 mb-2 border transition-all duration-300 z-10 relative shadow-lg group-hover:scale-105" style={{borderColor: 'var(--primary)'}}>
-                      <Icon className="w-10 h-10 transition-colors duration-300" style={{color: 'var(--primary)'}} />
-                    </div>
+                  </div>
+                  <CardHeader className="p-6 pb-2">
                     <CardTitle className={`text-2xl text-center font-bold ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: 'var(--primary)'}}>
                       {t(`services.${service.key}`)}
                     </CardTitle>

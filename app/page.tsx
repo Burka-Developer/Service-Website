@@ -302,17 +302,18 @@ export default function HomePage() {
 
           <div className="bg-white p-4 rounded-xl shadow-md border" style={{borderColor: `${colors.primary}20`}}>
             <div className="h-96 flex items-center justify-center rounded-lg border overflow-hidden" style={{backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
-              <iframe
-                title="Riyadh Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3623.845278964839!2d46.67529531500144!3d24.87426598408959!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f038c8b8b8b8b%3A0x8b8b8b8b8b8b8b8b!2sBuilding%204393%2C%20Al%20Shareeh%20St%2C%20Al%20Arid%2C%20Riyadh%2013335%2C%20Saudi%20Arabia!5e0!3m2!1sen!2ssa!4v1680000000000!5m2!1sen!2ssa"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+                <iframe
+                  title="Riyadh Map"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  scrolling="no"
+                  marginHeight={0}
+                  marginWidth={0}
+                  style={{ border: 0, borderRadius: 12 }}
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=46.6753%2C24.6212%2C46.8253%2C24.8212&amp;layer=mapnik&amp;marker=24.7136%2C46.6753"
+                ></iframe>
+              </div>
           </div>
         </div>
       </section>

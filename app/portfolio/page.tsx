@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
 import { useLanguage } from "@/contexts/language-context"
 import { Filter, Eye, Download } from "lucide-react"
+import Link from "next/link"
 
 const portfolioItems = [
   {
@@ -196,25 +197,24 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredItems.map((item, idx) => (
-              <Card key={item.id} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`, backgroundColor: colors.background, borderColor: `${colors.primary}20`}}>
-                <div className="relative">
+              <Card key={item.id} className="service-card group cursor-pointer fade-in" style={{animationDelay: `${idx * 80}ms`, backgroundColor: colors.background, borderColor: `${colors.primary}20`, borderRadius: '2rem', boxShadow: '0 6px 32px 0 rgba(163,22,33,0.10)'}}>
+                {/* Large Image with Overlay */}
+                <div className="relative w-full" style={{height: '260px'}}>
                   <img
                     src={item.image || "/images/house.jpg"}
                     alt={item.title[language]}
-                    className="w-full h-48 object-cover rounded-t-xl"
+                    className="object-cover w-full h-full rounded-t-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-1"
+                    loading="lazy"
+                    decoding="async"
+                    style={{height: '100%', width: '100%'}}
                   />
-                  <div className="absolute top-4 right-4">
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none transition-all duration-500 group-hover:from-black/70 group-hover:via-black/20" />
+                  {/* Category Badge Overlay */}
+                  <div className="absolute bottom-4 left-4">
                     <Badge style={{backgroundColor: colors.primary, color: colors.white, borderColor: colors.primary}}>{t(`services.${item.category}`)}</Badge>
                   </div>
-                  {item.beforeAfter && (
-                    <div className="absolute top-4 left-4">
-                      <Badge variant="secondary" style={{backgroundColor: colors.accent, color: colors.primary, borderColor: colors.accent}}>
-                        {language === "ar" ? "قبل وبعد" : "Before/After"}
-                      </Badge>
-                    </div>
-                  )}
                 </div>
-
                 <CardContent className="p-6">
                   <h3
                     className={`font-bold text-lg mb-2 ${language === "ar" ? "font-arabic" : "font-english"}`}
@@ -225,37 +225,18 @@ export default function PortfolioPage() {
                   <p className={`mb-4 ${language === "ar" ? "font-arabic" : "font-english"}`} style={{color: colors.textSecondary}}>
                     {item.description[language]}
                   </p>
-
-                  <div className="flex space-x-2 rtl:space-x-reverse">
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="flex-1 ripple rounded-lg text-base font-semibold"
-                      style={{borderColor: colors.primary, color: colors.primary, backgroundColor: 'transparent'}}
-                      onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = colors.white}}
-                      onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
-                    >
-                      <Eye className="w-4 h-4 mr-1" />
-                      <span className={language === "ar" ? "font-arabic" : "font-english"}>
-                        {language === "ar" ? "عرض" : "View"}
-                      </span>
-                    </Button>
-
-                    {item.downloadable && (
+                  <div className="flex">
+                    <Link href="/request">
                       <Button 
-                        size="sm" 
-                        variant="outline" 
-                        className="flex-1 ripple rounded-lg text-base font-semibold"
-                        style={{borderColor: colors.accent, color: colors.primary, backgroundColor: 'transparent'}}
-                        onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.accent; e.currentTarget.style.color = colors.primary}}
-                        onMouseOut={(e) => {e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = colors.primary}}
+                        size="lg" 
+                        className="w-full btn-primary ripple text-lg py-3 rounded-lg font-semibold"
+                        style={{backgroundColor: colors.primary, color: 'white', borderColor: colors.primary}}
+                        onMouseOver={(e) => {e.currentTarget.style.backgroundColor = colors.primaryHover; e.currentTarget.style.color = 'white'}} 
+                        onMouseOut={(e) => {e.currentTarget.style.backgroundColor = colors.primary; e.currentTarget.style.color = 'white'}}
                       >
-                        <Download className="w-4 h-4 mr-1" />
-                        <span className={language === "ar" ? "font-arabic" : "font-english"}>
-                          {language === "ar" ? "تحميل" : "Download"}
-                        </span>
+                        {language === "ar" ? "طلب خدمة" : "Request Service"}
                       </Button>
-                    )}
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
