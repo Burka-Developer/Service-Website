@@ -157,9 +157,9 @@ export default function ContactPage() {
                     >
                       {language === "ar" ? "الهاتف" : "Phone"}
                     </h3>
-                    <p className="text-gray-600">+966 53 530 2532</p>
-                    <p className="text-gray-600">+966 53 530 2532</p>
-                    <p className="text-gray-600 font-semibold mt-2">WhatsApp: +966 53 530 2532</p>
+                    <p className="text-gray-600">+966554352108</p>
+                    <p className="text-gray-600">+966554352108</p>
+                    <p className="text-gray-600 font-semibold mt-2">WhatsApp: +966554352108</p>
                   </div>
                 </div>
 
@@ -214,12 +214,12 @@ export default function ContactPage() {
                       {language === "ar" ? "واتساب" : "WhatsApp"}
                     </h3>
                     <a
-                      href="https://wa.me/+966535302532"
+                      href="https://wa.me/966554352108"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-green-600 hover:text-green-700 font-medium"
                     >
-                      +966 53 530 2532
+                      +966554352108
                     </a>
                   </div>
                 </div>

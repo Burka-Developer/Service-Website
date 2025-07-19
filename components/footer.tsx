@@ -60,7 +60,7 @@ export function Footer() {
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Phone className="w-5 h-5" style={{color: colors.iconColor}} />
-                <span className="text-sm" style={{color: colors.textSecondary}}>+966 53 530 2532</span>
+                <span className="text-sm" style={{color: colors.textSecondary}}>+966554352108</span>
               </div>
               <div className="flex items-center space-x-3 rtl:space-x-reverse">
                 <Mail className="w-5 h-5" style={{color: colors.iconColor}} />
@@ -133,7 +133,7 @@ export function Footer() {
 
       {/* WhatsApp Float Button - Kept green for brand recognition */}
       <a
-        href="https://wa.me/966535302532"
+        href="https://wa.me/966554352108"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors z-50"
